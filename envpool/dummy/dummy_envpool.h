@@ -26,9 +26,8 @@ class DummyEnvFns {
    * Returns a dict, keys are the names of the configurable variables of this
    * env, values stores the default values of the corresponding variable.
    *
-   * EnvPool will append to your configuration some common fields, currently
-   * there are the envpool specific configurations that defines the behavior of
-   * envpool.
+   * EnvPool will append some common fields to your configuration, which is unique
+   * to envpool and defines the corresponding behaviors.
    *
    * 1. num_envs: number of envs to be launched in envpool
    * 2. batch_size: the batch_size when interacting with the envpool
@@ -37,7 +36,7 @@ class DummyEnvFns {
    * 5. base_path: contains the path of the envpool python package
    * 6. seed: random seed
    *
-   * These's also single env specific configurations
+   * There is/are configuration(s) specific to a the single env
    *
    * 7. max_num_players: defines the number of players in a single env.
    *
@@ -53,15 +52,15 @@ class DummyEnvFns {
    *
    * The array spec can be created by calling `Spec<dtype>(shape, bounds)`.
    *
-   * Similarly, envpool also append to this state spec, there're:
+   * Envpool also append the below information to the state spec: 
    *
-   * 1. info:env_id: a int array that has shape [batch_size], when there's a
+   * 1. info:env_id: an int array that has shape [batch_size], when there's a
    * batch of states, it tells the user from which `env_id` that these states
    * come from.
    * 2. info:players.env_id: This is similar to `env_id`, but it has a shape of
    * [total_num_player], where the `total_num_player` is the total number of
    * players summed.
-   *
+   * // todo
    * For example, if in one batch we have states from envs [1, 3, 4],
    * in env 1 there're players [1, 2], in env 2 there're players [2, 3, 4],
    * in env 3 there're players [1]. Then:
@@ -84,7 +83,7 @@ class DummyEnvFns {
    * values are the ArraySpec of the actions (each action is stored in an
    * array).
    *
-   * Similarly, envpool also append to this state spec, there're:
+   * Envpool also append the below information to the state spec: 
    *
    * 1. env_id
    * 2. players.env_id
@@ -99,7 +98,7 @@ class DummyEnvFns {
 };
 
 /**
- * Create an DummyEnvSpec by passing the above functions to EnvSpec.
+ * Create DummyEnvSpec by passing the above functions to EnvSpec.
  */
 typedef class EnvSpec<DummyEnvFns> DummyEnvSpec;
 
